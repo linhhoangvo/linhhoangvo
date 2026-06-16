@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linh Vo — Operations Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #F7F5F1;
+      --ink:      #1A2233;
+      --ink-soft: #4A5568;
+      --sand:     #C09A6B;
+      --rule:     #D6CEBF;
+      --white:    #FFFFFF;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Header ── */
+    header {
+      padding: 5rem 0 3.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      font-weight: 300;
+    }
+
+    /* ── Nav / contact strip ── */
+    .contact-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .contact-strip a {
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--sand);
+      padding-bottom: 1px;
+      transition: color 0.2s;
+    }
+
+    .contact-strip a:hover { color: var(--sand); }
+
+    /* ── Sections ── */
+    section {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 1.8rem;
+    }
+
+    /* ── About ── */
+    .about-text {
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      max-width: 580px;
+      line-height: 1.8;
+    }
+
+    /* ── Experience ── */
+    .timeline { position: relative; padding-left: 1.5rem; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.45rem;
+      bottom: 0.45rem;
+      width: 1px;
+      background: var(--sand);
+      opacity: 0.45;
+    }
+
+    .entry { position: relative; margin-bottom: 2.8rem; }
+    .entry:last-child { margin-bottom: 0; }
+
+    .entry::before {
+      content: '';
+      position: absolute;
+      left: -1.5rem;
+      top: 0.45rem;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--sand);
+      transform: translateX(-2px);
+    }
+
+    .entry-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .entry-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .entry-org {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--sand);
+      letter-spacing: 0.04em;
+    }
+
+    .entry-period {
+      font-size: 0.75rem;
+      color: var(--ink-soft);
+      margin-left: auto;
+      white-space: nowrap;
+    }
+
+    .entry-desc {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      line-height: 1.75;
+    }
+
+    .entry-desc ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 0.4rem;
+    }
+
+    .entry-desc ul li {
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.25rem;
+    }
+
+    .entry-desc ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--sand);
+    }
+
+    /* ── Education ── */
+    .edu-entry { margin-bottom: 2rem; }
+    .edu-entry:last-child { margin-bottom: 0; }
+
+    .edu-degree {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .edu-school {
+      font-size: 0.85rem;
+      color: var(--sand);
+      margin-top: 0.15rem;
+    }
+
+    .edu-year {
+      font-size: 0.75rem;
+      color: var(--ink-soft);
+      margin-top: 0.1rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 2.5rem 0;
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 520px) {
+      .entry-period { margin-left: 0; width: 100%; }
+      header { padding: 3.5rem 0 2.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <p class="eyebrow">Operations &amp; Travel Management</p>
+      <h1>Linh Vo</h1>
+      <p class="tagline">Turning complex itineraries into seamless journeys.</p>
+
+      <div class="contact-strip">
+        <a href="mailto:linh.vo@email.com">linh.vo@email.com</a>
+        <a href="tel:+84000000000">+84 000 000 000</a>
+        <a href="https://linkedin.com/in/linhvo" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#">Da Nang, Vietnam</a>
+      </div>
+    </header>
+
+    <!-- About -->
+    <section id="about">
+      <p class="section-label">About</p>
+      <p class="about-text">
+        Operations manager with [X] years of experience in the travel industry,
+        specialising in tour coordination, vendor relations, and cross-cultural client
+        services. I thrive on the logistical complexity that makes travel look effortless —
+        from multi-destination group tours to bespoke individual itineraries. Fluent in
+        [languages], with a track record of improving operational efficiency and client
+        satisfaction across domestic and international markets.
+      </p>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+      <p class="section-label">Experience</p>
+      <div class="timeline">
+
+        <div class="entry">
+          <div class="entry-meta">
+            <span class="entry-title">Operations Manager</span>
+            <span class="entry-org">Company Name</span>
+            <span class="entry-period">2021 – Present</span>
+          </div>
+          <div class="entry-desc">
+            <ul>
+              <li>Oversaw end-to-end tour operations for groups of up to [X] travellers across [regions].</li>
+              <li>Managed relationships with [X]+ hotels, transport providers, and local guides.</li>
+              <li>Reduced booking errors by [X]% through process improvements and staff training.</li>
+              <li>Led a team of [X] operations coordinators and handled escalated client issues.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-meta">
+            <span class="entry-title">Tour Coordinator</span>
+            <span class="entry-org">Previous Company</span>
+            <span class="entry-period">2018 – 2021</span>
+          </div>
+          <div class="entry-desc">
+            <ul>
+              <li>Coordinated domestic and international group tours from inquiry to post-trip follow-up.</li>
+              <li>Prepared detailed itineraries, budgets, and supplier briefings for each departure.</li>
+              <li>Maintained [X]% on-time departure rate across [X] annual tour programmes.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-meta">
+            <span class="entry-title">Travel Consultant</span>
+            <span class="entry-org">Previous Company</span>
+            <span class="entry-period">2016 – 2018</span>
+          </div>
+          <div class="entry-desc">
+            <ul>
+              <li>Advised individual and corporate clients on travel packages, visas, and logistics.</li>
+              <li>Consistently exceeded monthly sales targets by [X]%.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <p class="section-label">Education</p>
+
+      <div class="edu-entry">
+        <p class="edu-degree">Bachelor of [Your Degree]</p>
+        <p class="edu-school">University Name · City</p>
+        <p class="edu-year">Graduated [Year]</p>
+      </div>
+
+      <div class="edu-entry">
+        <p class="edu-degree">Certificate in Tourism &amp; Hospitality Management</p>
+        <p class="edu-school">Institution Name</p>
+        <p class="edu-year">[Year]</p>
+      </div>
+
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <p class="section-label">Get in Touch</p>
+      <p class="about-text">
+        Open to new opportunities, partnerships, and conversations about travel operations.
+        The best way to reach me is by email at
+        <a href="mailto:linh.vo@email.com" style="color:var(--sand);border-bottom:1px solid var(--sand);text-decoration:none;">linh.vo@email.com</a>.
+      </p>
+    </section>
+
+    <footer>
+      &copy; 2026 Linh Vo
+    </footer>
+
+  </div>
+
+</body>
+</html>
